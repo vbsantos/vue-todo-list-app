@@ -1,14 +1,17 @@
 <template>
-  <div class="todo-item" v-bind:class="{ 'is-complete': todo.completed }">
-    <p>
-      <input v-model="checked" type="checkbox" @click="toggleTodo" />
-      {{ todo.title }}
-      <!-- <small>
-        <i>{{JSON.stringify(todo)}}</i>
-      </small>-->
-      <!-- <button @click="$emit('del-todo', todo.id)" class="del">X</button> -->
-      <button @click="deleteTodo" class="del">X</button>
-    </p>
+  <div id="todo-item">
+    <button
+      id="check-button"
+      class="neomorphic-btn"
+      v-bind:class="{ 'neomorphic-btn-active': todo.completed }"
+      @click="toggleTodo"
+    >
+      <img class="icon" src="../assets/check-icon.png" />
+    </button>
+    <p id="todo-title" v-bind:class="{ 'todo-active': todo.completed }">{{ todo.title }}</p>
+    <button id="delete-button" class="neomorphic-btn" @click="deleteTodo">
+      <img class="icon" src="../assets/trash-icon.png" />
+    </button>
   </div>
 </template>
 
@@ -16,7 +19,7 @@
 export default {
   name: "TodoItem",
   props: ["todo"],
-  data: function() {
+  data: function () {
     return {
       checked: this.todo.completed,
     };
@@ -33,22 +36,40 @@ export default {
 </script>
 
 <style scoped>
-.todo-item {
-  background: #f4f4f4;
-  padding: 10px;
-  border-bottom: 1px #ccc dotted;
-  text-align: left;
+#todo-item {
+  display: flex;
+  padding: 20px 0;
+  margin: 0;
 }
-.is-complete {
-  text-decoration: line-through;
+#check-button {
+  flex: 1;
+  height: 40px;
+  line-height: 40px;
+  min-width: 40px;
 }
-.del {
-  background: #ff0000;
-  color: #fff;
-  border: none;
-  padding: 5px 9px;
-  border-radius: 50%;
-  cursor: pointer;
-  float: right;
+#todo-title {
+  flex: 24;
+  color: var(--color3);
+  height: 40px;
+  line-height: 40px;
+  font-size: 24px;
+  padding: 0 20px;
+  margin: 0;
+}
+#delete-button {
+  flex: 1;
+  height: 40px;
+  line-height: 40px;
+  min-width: 40px;
+}
+.icon {
+  filter: invert(70%);
+  padding-top: 5px;
+  width: 25px;
+  height: 25px;
+}
+.todo-active {
+  color: var(--color4) !important;
+  font-style: italic;
 }
 </style>

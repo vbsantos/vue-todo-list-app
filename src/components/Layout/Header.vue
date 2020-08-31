@@ -1,9 +1,10 @@
 <template>
-  <header class="header">
-    <h1>Todo-List</h1>
+  <header id="header">
+    <h1 id="title">Todo-List</h1>
     <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>
+      <router-link to="/">{{ "Home" }}</router-link>
+      {{ " | " }}
+      <router-link to="/about">{{ "About" }}</router-link>
     </div>
   </header>
 </template>
@@ -15,18 +16,39 @@ export default {
 </script>
 
 <style scoped>
-.header {
-  background: #333;
-  color: #fff;
+#header {
+  /* border: 1px red solid; */
+  height: 80px;
   text-align: center;
-  padding: 10px;
+  color: var(--color3);
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
 }
-.header a {
-  color: #fff;
-  padding-right: 5px;
+#header a {
+  color: var(--color3);
   text-decoration: none;
 }
-.header a:hover {
+#header a:hover {
   text-decoration: underline;
+}
+#title {
+  height: 40px;
+  line-height: 40px;
+  font-size: 36px;
+  margin: 0;
+  padding: 0;
+}
+#nav {
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+.router-link-active {
+  font-weight: 800;
+  cursor: default;
+  text-decoration: none !important;
 }
 </style>

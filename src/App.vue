@@ -16,44 +16,44 @@ export default {
 </script>
 
 <style>
-* {
-  box-sizing: border-box;
+:root {
+  --color1: #242a39;
+  --color2: #eb5757;
+  --color3: rgba(242, 242, 242, 0.75);
+  --color4: rgba(242, 242, 242, 0.25);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+body {
+  background-color: var(--color1);
   margin: 0;
   padding: 0;
 }
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.4;
+.neomorphic-btn {
+  padding: 0;
+  color: var(--color3);
+  border: solid 1px var(--color1);
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.5),
+    -4px -4px 6px 0px rgba(255, 255, 255, 0.2);
+  background-color: var(--color1);
 }
-.btn {
-  display: inline-block;
-  border: none;
-  background: #555;
-  color: #fff;
-  padding: 7px 20px;
-  cursor: pointer;
+.neomorphic-btn:active {
+  box-shadow: inset 4px 4px 6px 0px rgba(0, 0, 0, 0.5),
+    inset -4px -4px 6px 0px rgba(255, 255, 255, 0.2);
+  background-color: var(--color2);
 }
-.btn:hover {
-  background: #666;
+.neomorphic-btn-active {
+  box-shadow: none;
+  box-shadow: inset 4px 4px 6px 0px rgba(0, 0, 0, 0.5),
+    inset -4px -4px 6px 0px rgba(255, 255, 255, 0.2);
+  background-color: var(--color2);
 }
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+</style>
 
-#nav {
-  padding: 30px;
+<style scoped>
+#app {
+  max-width: 600px;
+  margin: auto;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-} */
 </style>
