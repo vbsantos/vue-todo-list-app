@@ -53,9 +53,16 @@ form {
   line-height: 40px;
   font-size: 24px;
   width: 100%;
-  border: none;
-  background-color: var(--color1);
-  color: rgba(255, 255, 255, 0.5);
+  border: 0px solid;
+  background-color: transparent;
+  color: var(--color3);
+}
+#text-input:focus {
+  outline: none;
+}
+#text-input::placeholder {
+  color: var(--color4);
+  opacity: 10;
 }
 #submit-btn {
   height: 40px;

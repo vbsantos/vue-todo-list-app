@@ -2,11 +2,10 @@
   <div class="about">
     <p>
       This
-      <b>Todo List app</b> is part of a Vue.js Course I
+      <b>Todo List app</b> is part of a
+      <b>Vue.js Course</b> I
       made at the YouTube channel
-      <a
-        href="https://www.youtube.com/watch?v=Wy9q22isx3U"
-      >Traversy Media</a>.
+      <b>Traversy Media</b>.
     </p>
   </div>
 </template>
@@ -15,7 +14,8 @@
 .about {
   text-align: center;
   color: var(--color3);
-  font-size: 18px;
+  font-size: 24px;
+  line-height: 36px;
 }
 .about a {
   font-weight: 800;

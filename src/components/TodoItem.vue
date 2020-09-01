@@ -42,34 +42,36 @@ export default {
   margin: 0;
 }
 #check-button {
-  flex: 1;
+  /* flex: 1; */
   height: 40px;
   line-height: 40px;
   min-width: 40px;
 }
 #todo-title {
-  flex: 24;
+  /* flex: 24; */
   color: var(--color3);
-  height: 40px;
+  min-height: 40px;
+  width: calc(100% - 120px);
   line-height: 40px;
   font-size: 24px;
   padding: 0 20px;
   margin: 0;
+  word-wrap: break-word;
 }
 #delete-button {
-  flex: 1;
+  /* flex: 1; */
   height: 40px;
   line-height: 40px;
   min-width: 40px;
 }
 .icon {
   filter: invert(70%);
-  padding-top: 5px;
+  padding-top: 7px;
+  padding-left: 1px;
   width: 25px;
   height: 25px;
 }
 .todo-active {
   color: var(--color4) !important;
-  font-style: italic;
 }
 </style>
