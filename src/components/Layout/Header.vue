@@ -2,9 +2,9 @@
   <header id="header">
     <h1 id="title">Todo-List</h1>
     <div id="nav">
-      <router-link to="/">{{ "Home" }}</router-link>
+      <router-link to="/">Home</router-link>
       {{ " | " }}
-      <router-link to="/about">{{ "About" }}</router-link>
+      <router-link to="/about">About</router-link>
     </div>
   </header>
 </template>
@@ -17,7 +17,6 @@ export default {
 
 <style scoped>
 #header {
-  /* border: 1px red solid; */
   height: 80px;
   text-align: center;
   color: var(--color3);
@@ -45,6 +44,8 @@ export default {
   font-size: 18px;
   margin: 0;
   padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu Condensed, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 .router-link-active {
   font-weight: 800;

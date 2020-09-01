@@ -16,7 +16,8 @@
   margin-top: 20px;
 }
 #footer p {
-  margin-bottom: 0;
-  padding-bottom: 0;
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
 }
 </style>

@@ -20,10 +20,10 @@ export default {
 
 <style>
 :root {
-  --color1: #242a39;
-  --color2: #395db8;
-  --color3: rgba(242, 242, 242, 0.75);
-  --color4: rgba(242, 242, 242, 0.25);
+  --color1: rgb(35, 41, 56);
+  --color2: rgb(70, 207, 104);
+  --color3: rgba(248, 248, 242, 0.749);
+  --color4: rgba(248, 248, 242, 0.251);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }

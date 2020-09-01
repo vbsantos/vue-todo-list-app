@@ -1,29 +1,23 @@
 <template>
-  <div class="about">
+  <div id="about">
     <p>
       This
-      <b>Todo List app</b> is part of a
+      Todo List app is part of a
       <b>Vue.js Course</b> I
-      made at the YouTube channel
-      <b>Traversy Media</b>.
+      made at the
+      <b>Traversy Media</b> YouTube channel.
+      <br />For styling and colors I used
+      <b>Neumorphism</b> and
+      <b>Dracula Theme</b> as a reference.
     </p>
   </div>
 </template>
 
 <style scoped>
-.about {
+#about {
   text-align: center;
   color: var(--color3);
   font-size: 24px;
   line-height: 36px;
-}
-.about a {
-  font-weight: 800;
-  text-decoration: none;
-  color: var(--color3);
-}
-.about a:hover {
-  font-weight: 800;
-  text-decoration: underline;
 }
 </style>

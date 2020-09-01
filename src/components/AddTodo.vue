@@ -41,8 +41,7 @@ export default {
 
 <style scoped>
 #addTodo {
-  padding: 10px 0;
-  margin: 10px 0px;
+  padding: 20px 0;
   height: 40px;
 }
 form {
