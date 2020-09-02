@@ -1,8 +1,8 @@
 function storageAvailable(type) {
-  var storage;
+  let storage;
   try {
     storage = window[type];
-    var x = "__storage_test__";
+    const x = "__storage_test__";
     storage.setItem(x, x);
     storage.removeItem(x);
     return true;
@@ -29,7 +29,6 @@ export default {
   toggleTodo(toggle_todo) {
     try {
       if (!storageAvailable("localStorage")) throw "Storage not available!";
-
       let todos = JSON.parse(localStorage["todos"]);
       todos.find(
         (todo) => todo.id === toggle_todo.id
@@ -44,7 +43,6 @@ export default {
   deleteTodo(id) {
     try {
       if (!storageAvailable("localStorage")) throw "Storage not available!";
-
       let todos = JSON.parse(localStorage["todos"]);
       todos = todos.filter((todo) => todo.id !== id);
       localStorage["todos"] = JSON.stringify(todos);
@@ -57,7 +55,6 @@ export default {
   addTodo(todo) {
     try {
       if (!storageAvailable("localStorage")) throw "Storage not available!";
-
       let todos = JSON.parse(localStorage["todos"]);
       todos = [...todos, todo];
       localStorage["todos"] = JSON.stringify(todos);
@@ -70,7 +67,6 @@ export default {
   loadTodos() {
     try {
       if (!storageAvailable("localStorage")) throw "Storage not available!";
-
       return JSON.parse(localStorage["todos"]);
     } catch (error) {
       console.error("ERROR:", error);
