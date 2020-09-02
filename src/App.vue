@@ -25,10 +25,10 @@ export default {
   --color3: rgb(255, 85, 85);
   --color4: rgba(248, 248, 242, 0.749);
   --color5: rgba(248, 248, 242, 0.251);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: var(--color1);
   margin: 0;
   padding: 0;
