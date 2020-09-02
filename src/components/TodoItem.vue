@@ -1,20 +1,20 @@
 <template>
   <div id="todo-item">
     <button
-      id="check-button"
+      id="check-btn"
       class="neomorphic-btn"
       v-bind:class="{ 'neomorphic-btn-active': todo.completed }"
       @click="toggleTodo"
     >
       <img
-        class="icon check"
+        class="icon"
         v-bind:class="{ 'selected': todo.completed }"
         src="../assets/check-icon.png"
       />
     </button>
     <p id="todo-title" v-bind:class="{ 'selected': todo.completed }">{{ todo.title }}</p>
-    <button id="delete-button" class="neomorphic-btn" @click="deleteTodo">
-      <img class="icon trash" src="../assets/trash-icon.png" />
+    <button id="delete-btn" class="neomorphic-btn" @click="deleteTodo">
+      <img class="icon" src="../assets/trash-icon.png" />
     </button>
   </div>
 </template>
@@ -47,13 +47,13 @@ export default {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu Condensed, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-#check-button {
+#check-btn {
   height: 40px;
   line-height: 40px;
   min-width: 40px;
 }
 #todo-title {
-  color: var(--color3);
+  color: var(--color4);
   min-height: 40px;
   width: calc(100% - 120px);
   line-height: 40px;
@@ -62,7 +62,7 @@ export default {
   margin: 0;
   word-wrap: break-word;
 }
-#delete-button {
+#delete-btn {
   height: 40px;
   line-height: 40px;
   min-width: 40px;
@@ -74,16 +74,16 @@ export default {
   height: 25px;
   filter: invert(100%);
 }
-.icon.trash {
+#delete-btn .icon {
   opacity: 0.75;
 }
-.icon.check {
+#check-btn .icon {
   opacity: 0.25;
 }
 .selected {
-  color: var(--color4) !important;
+  color: var(--color5) !important;
 }
-.icon.check.selected {
+#check-btn .icon.selected {
   opacity: 1 !important;
 }
 </style>

@@ -12,7 +12,7 @@
 <style scoped>
 #footer {
   text-align: center;
-  color: var(--color4);
+  color: var(--color5);
   margin-top: 20px;
 }
 #footer p {

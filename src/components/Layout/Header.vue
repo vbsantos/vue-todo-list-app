@@ -19,13 +19,13 @@ export default {
 #header {
   height: 80px;
   text-align: center;
-  color: var(--color3);
+  color: var(--color4);
   margin: 0;
   padding: 0;
   margin-top: 10px;
 }
 #header a {
-  color: var(--color3);
+  color: var(--color4);
   text-decoration: none;
 }
 #header a:hover {

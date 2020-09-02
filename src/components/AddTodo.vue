@@ -2,7 +2,13 @@
   <div id="addTodo">
     <form @submit="addTodo">
       <input id="text-input" type="text" v-model="title" name="title" placeholder="Add Todo..." />
-      <input id="submit-btn" type="submit" value="ADD" class="neomorphic-btn" />
+      <input
+        id="submit-btn"
+        type="submit"
+        value="ADD"
+        v-bind:class="{ 'empty': title == ''  }"
+        class="neomorphic-btn"
+      />
     </form>
   </div>
 </template>
@@ -55,13 +61,13 @@ form {
   min-width: 10px;
   border: 0px solid;
   background-color: transparent;
-  color: var(--color3);
+  color: var(--color4);
 }
 #text-input:focus {
   outline: none;
 }
 #text-input::placeholder {
-  color: var(--color4);
+  color: var(--color5);
   opacity: 10;
 }
 #submit-btn {

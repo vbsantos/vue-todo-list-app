@@ -16,7 +16,7 @@
 <style scoped>
 #about {
   text-align: center;
-  color: var(--color3);
+  color: var(--color4);
   font-size: 24px;
   line-height: 36px;
 }
