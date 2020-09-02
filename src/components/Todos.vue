@@ -21,3 +21,9 @@ export default {
   props: ["todos"],
 };
 </script>
+
+<style scoped>
+#todos {
+  min-height: calc(100vh - 229px);
+}
+</style>
