@@ -9,6 +9,7 @@
 // Import Components
 import Todos from "../components/Todos";
 import AddTodo from "../components/AddTodo";
+import Storage from "../functions/storage.js";
 export default {
   name: "Home",
   components: { AddTodo, Todos },
@@ -19,16 +20,17 @@ export default {
   },
   methods: {
     toggleTodo(todoItem) {
-      this.todos.find(
-        (todo) => todo.id === todoItem.id
-      ).completed = !todoItem.completed;
+      this.todos = Storage.toggleTodo(todoItem);
     },
     deleteTodo(id) {
-      this.todos = this.todos.filter((todo) => todo.id !== id);
+      this.todos = Storage.deleteTodo(id);
     },
     addTodo(todo) {
-      this.todos = [...this.todos, todo];
+      this.todos = Storage.addTodo(todo);
     },
+  },
+  created() {
+    this.todos = Storage.loadTodos();
   },
 };
 </script>
