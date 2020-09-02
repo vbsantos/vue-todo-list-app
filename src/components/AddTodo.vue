@@ -52,6 +52,7 @@ form {
   line-height: 40px;
   font-size: 24px;
   width: 100%;
+  min-width: 10px;
   border: 0px solid;
   background-color: transparent;
   color: var(--color3);
