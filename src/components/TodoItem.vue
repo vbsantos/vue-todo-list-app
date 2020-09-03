@@ -8,11 +8,13 @@
     >
       <img
         class="icon"
-        v-bind:class="{ 'selected': todo.completed }"
+        v-bind:class="{ selected: todo.completed }"
         src="../assets/check-icon.png"
       />
     </button>
-    <p id="todo-title" v-bind:class="{ 'selected': todo.completed }">{{ todo.title }}</p>
+    <p id="todo-title" v-bind:class="{ selected: todo.completed }">
+      {{ todo.title }}
+    </p>
     <button id="delete-btn" class="neomorphic-btn" @click="deleteTodo">
       <img class="icon" src="../assets/trash-icon.png" />
     </button>
@@ -23,7 +25,7 @@
 export default {
   name: "TodoItem",
   props: ["todo"],
-  data: function () {
+  data: function() {
     return {
       checked: this.todo.completed,
     };

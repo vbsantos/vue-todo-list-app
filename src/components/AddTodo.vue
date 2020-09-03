@@ -1,12 +1,18 @@
 <template>
   <div id="addTodo">
     <form @submit="addTodo">
-      <input id="text-input" type="text" v-model="title" name="title" placeholder="Add Todo..." />
+      <input
+        id="text-input"
+        type="text"
+        v-model="title"
+        name="title"
+        placeholder="Add Todo..."
+      />
       <input
         id="submit-btn"
         type="submit"
         value="ADD"
-        v-bind:class="{ 'empty': title == ''  }"
+        v-bind:class="{ empty: title == '' }"
         class="neomorphic-btn"
       />
     </form>

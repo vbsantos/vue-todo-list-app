@@ -1,13 +1,9 @@
 <template>
   <div id="about">
     <p>
-      This
-      Todo List app is part of a
-      <b>Vue.js Course</b> I
-      made at the
-      <b>Traversy Media</b> YouTube channel.
-      <br />For styling and colors I used
-      <b>Neumorphism</b> and
+      This Todo List app is part of a
+      <b>Vue.js Course</b> I made at the <b>Traversy Media</b> YouTube channel.
+      <br />For styling and colors I used <b>Neumorphism</b> and
       <b>Dracula Theme</b> as a reference.
     </p>
   </div>
@@ -19,5 +15,6 @@
   color: var(--color4);
   font-size: 24px;
   line-height: 36px;
+  min-height: calc(100vh - 173px);
 }
 </style>
