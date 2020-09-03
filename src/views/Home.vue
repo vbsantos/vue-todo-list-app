@@ -9,28 +9,25 @@
 // Import Components
 import Todos from "../components/Todos";
 import AddTodo from "../components/AddTodo";
-import Storage from "../functions/storage.js";
 export default {
   name: "Home",
   components: { AddTodo, Todos },
   data() {
-    return {
-      todos: [],
-    };
+    return this.$store.state;
   },
   methods: {
-    toggleTodo(todoItem) {
-      this.todos = Storage.toggleTodo(todoItem);
+    toggleTodo(todo) {
+      this.$store.dispatch("toggleTodo", todo);
     },
     deleteTodo(id) {
-      this.todos = Storage.deleteTodo(id);
+      this.$store.dispatch("deleteTodo", id);
     },
     addTodo(todo) {
-      this.todos = Storage.addTodo(todo);
+      this.$store.dispatch("addTodo", todo);
     },
   },
   created() {
-    this.todos = Storage.loadTodos();
+    this.$store.dispatch("loadTodos");
   },
 };
 </script>
