@@ -1,12 +1,12 @@
 <template>
   <div id="todos">
-    <div v-bind:key="todo.id" v-for="todo in todos">
-      <TodoItem
-        v-bind:todo="todo"
-        v-on:del-todo="$emit('del-todo', todo.id)"
-        v-on:toggle-todo="$emit('toggle-todo', todo)"
-      />
-    </div>
+    <TodoItem
+      v-bind:key="todo.id"
+      v-for="todo in todos"
+      v-bind:todo="todo"
+      v-on:del-todo="$emit('del-todo', todo.id)"
+      v-on:toggle-todo="$emit('toggle-todo', todo)"
+    />
   </div>
 </template>
 
