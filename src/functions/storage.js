@@ -26,7 +26,7 @@ function storageAvailable(type) {
 }
 
 export default {
-  toggleTodo(toggle_todo) {
+  async toggleTodo(toggle_todo) {
     try {
       if (!storageAvailable("localStorage")) throw "Storage not available!";
       let todos = JSON.parse(localStorage["todos"]);
@@ -40,7 +40,7 @@ export default {
       return [];
     }
   },
-  deleteTodo(id) {
+  async deleteTodo(id) {
     try {
       if (!storageAvailable("localStorage")) throw "Storage not available!";
       let todos = JSON.parse(localStorage["todos"]);
@@ -52,7 +52,7 @@ export default {
       return [];
     }
   },
-  addTodo(todo) {
+  async addTodo(todo) {
     try {
       if (!storageAvailable("localStorage")) throw "Storage not available!";
       let todos = JSON.parse(localStorage["todos"]);
@@ -64,7 +64,7 @@ export default {
       return [];
     }
   },
-  loadTodos() {
+  async loadTodos() {
     try {
       if (!storageAvailable("localStorage")) throw "Storage not available!";
       return JSON.parse(localStorage["todos"]);
