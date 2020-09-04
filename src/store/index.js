@@ -12,6 +12,7 @@ export default createStore({
   mutations: {
     SET_LOADING_STATUS: (state, status) => {
       state.loading = status;
+      console.log("loading");
     },
     SET_TODOS: (state, todos) => {
       state.todos = todos;

@@ -69,5 +69,6 @@ form {
   font-size: 24px;
   width: 99px;
   margin-left: 10px;
+  cursor: pointer;
 }
 </style>

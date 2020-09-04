@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-bind:class="{ 'loading': loading }">
     <Header />
     <router-view />
     <Footer />
@@ -15,6 +15,11 @@ export default {
   components: {
     Header,
     Footer,
+  },
+  computed: {
+    loading() {
+      return this.$store.state.loading;
+    },
   },
 };
 </script>
@@ -33,6 +38,9 @@ body {
   background-color: var(--color1);
   margin: 0;
   padding: 0;
+}
+.loading * {
+  cursor: wait !important;
 }
 .neomorphic-btn {
   padding: 0;
