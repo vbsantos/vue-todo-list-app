@@ -74,4 +74,14 @@ export default {
       return [];
     }
   },
+  async storeTodos(todos) {
+    try {
+      if (!storageAvailable("localStorage")) throw "Storage not available!";
+      localStorage["todos"] = JSON.stringify(todos);
+      return JSON.parse(localStorage["todos"]);
+    } catch (error) {
+      console.error("ERROR:", error);
+      return todos;
+    }
+  },
 };

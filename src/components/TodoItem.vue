@@ -1,16 +1,33 @@
 <template>
   <div id="todo-item">
     <button
+      draggable="false"
       id="check-btn"
       class="neomorphic-btn"
       v-bind:class="{ 'neomorphic-btn-active': todo.completed }"
       @click="toggleTodo"
     >
-      <img class="icon" v-bind:class="{ selected: todo.completed }" src="../assets/check-icon.png" />
+      <img
+        draggable="false"
+        class="icon"
+        v-bind:class="{ selected: todo.completed }"
+        src="../assets/check-icon.png"
+      />
     </button>
-    <p id="todo-title" v-bind:class="{ selected: todo.completed }">{{ todo.title }}</p>
-    <button id="delete-btn" class="neomorphic-btn" @click="deleteTodo">
-      <img class="icon" src="../assets/trash-icon.png" />
+    <p
+      draggable="false"
+      id="todo-title"
+      v-bind:class="{ selected: todo.completed }"
+    >
+      {{ todo.title }}
+    </p>
+    <button
+      draggable="false"
+      id="delete-btn"
+      class="neomorphic-btn"
+      @click="deleteTodo"
+    >
+      <img draggable="false" class="icon" src="../assets/trash-icon.png" />
     </button>
   </div>
 </template>
@@ -42,6 +59,7 @@ export default {
   height: 40px;
   line-height: 40px;
   min-width: 40px;
+  cursor: pointer;
 }
 #todo-title {
   color: var(--color4);
@@ -52,11 +70,13 @@ export default {
   padding: 0 20px;
   margin: 0;
   word-wrap: break-word;
+  cursor: grab;
 }
 #delete-btn {
   height: 40px;
   line-height: 40px;
   min-width: 40px;
+  cursor: pointer;
 }
 .icon {
   padding-top: 7px;
