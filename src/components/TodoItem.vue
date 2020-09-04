@@ -6,15 +6,9 @@
       v-bind:class="{ 'neomorphic-btn-active': todo.completed }"
       @click="toggleTodo"
     >
-      <img
-        class="icon"
-        v-bind:class="{ selected: todo.completed }"
-        src="../assets/check-icon.png"
-      />
+      <img class="icon" v-bind:class="{ selected: todo.completed }" src="../assets/check-icon.png" />
     </button>
-    <p id="todo-title" v-bind:class="{ selected: todo.completed }">
-      {{ todo.title }}
-    </p>
+    <p id="todo-title" v-bind:class="{ selected: todo.completed }">{{ todo.title }}</p>
     <button id="delete-btn" class="neomorphic-btn" @click="deleteTodo">
       <img class="icon" src="../assets/trash-icon.png" />
     </button>
@@ -25,17 +19,12 @@
 export default {
   name: "TodoItem",
   props: ["todo"],
-  data: function() {
-    return {
-      checked: this.todo.completed,
-    };
-  },
   methods: {
     toggleTodo() {
-      this.$emit("toggle-todo", this.todo);
+      this.$store.dispatch("toggleTodo", this.todo);
     },
     deleteTodo() {
-      this.$emit("del-todo", this.todo.id);
+      this.$store.dispatch("deleteTodo", this.todo.id);
     },
   },
 };

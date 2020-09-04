@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import mutationTypes from "./mutation-types";
-import Storage from "../functions/storage.js";
+import Storage from "../functions/storage";
 
 export default createStore({
   state: {
@@ -8,38 +8,42 @@ export default createStore({
     todos: [],
   },
   mutations: {
-    SET_LOADING_STATUS(state, status) {
+    SET_LOADING_STATUS: (state, status) => {
       state.loading = status;
     },
-    SET_TODOS(state, todos) {
+    SET_TODOS: (state, todos) => {
       state.todos = todos;
     },
   },
   actions: {
-    async loadTodos({ commit }) {
+    loadTodos: async ({ commit }) => {
       commit(mutationTypes.SET_LOADING_STATUS, true);
       const todos = await Storage.loadTodos();
       commit(mutationTypes.SET_LOADING_STATUS, false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    async addTodo({ commit }, todo) {
+    addTodo: async ({ commit }, todo) => {
       commit(mutationTypes.SET_LOADING_STATUS, true);
       const todos = await Storage.addTodo(todo);
       commit(mutationTypes.SET_LOADING_STATUS, false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    async toggleTodo({ commit }, todo) {
+    toggleTodo: async ({ commit }, todo) => {
       commit(mutationTypes.SET_LOADING_STATUS, true);
       const todos = await Storage.toggleTodo(todo);
       commit(mutationTypes.SET_LOADING_STATUS, false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    async deleteTodo({ commit }, todo_id) {
+    deleteTodo: async ({ commit }, todo_id) => {
       commit(mutationTypes.SET_LOADING_STATUS, true);
       const todos = await Storage.deleteTodo(todo_id);
       commit(mutationTypes.SET_LOADING_STATUS, false);
       commit(mutationTypes.SET_TODOS, todos);
     },
   },
-  modules: {},
+  getters: {
+    invertedTodos: (state) => {
+      return state.todos.sort((a, b) => b - a);
+    },
+  },
 });

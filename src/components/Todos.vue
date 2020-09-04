@@ -1,12 +1,6 @@
 <template>
   <div id="todos">
-    <TodoItem
-      v-bind:key="todo.id"
-      v-for="todo in todos"
-      v-bind:todo="todo"
-      v-on:del-todo="$emit('del-todo', todo.id)"
-      v-on:toggle-todo="$emit('toggle-todo', todo)"
-    />
+    <TodoItem v-for="todo in todos" v-bind:key="todo.id" v-bind:todo="todo" />
   </div>
 </template>
 
@@ -18,7 +12,9 @@ export default {
   components: {
     TodoItem,
   },
-  props: ["todos"],
+  data() {
+    return this.$store.state;
+  },
 };
 </script>
 

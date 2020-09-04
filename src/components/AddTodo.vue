@@ -1,13 +1,7 @@
 <template>
   <div id="addTodo">
     <form @submit="addTodo">
-      <input
-        id="text-input"
-        type="text"
-        v-model="title"
-        name="title"
-        placeholder="Add Todo..."
-      />
+      <input id="text-input" type="text" v-model="title" name="title" placeholder="Add Todo..." />
       <input
         id="submit-btn"
         type="submit"
@@ -29,22 +23,15 @@ export default {
   },
   methods: {
     addTodo(e) {
-      // prevent page refresh
       e.preventDefault();
-
       if (!this.title) return;
 
-      //create todo object
-      const newTodo = {
+      this.$store.dispatch("addTodo", {
         id: new Date().toISOString(),
         title: this.title,
         completed: false,
-      };
+      });
 
-      // Send up to parent
-      this.$emit("add-todo", newTodo);
-
-      // clear input
       this.title = "";
     },
   },
