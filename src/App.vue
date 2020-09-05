@@ -31,10 +31,13 @@ export default {
   --color3: rgb(255, 85, 85);
   --color4: rgba(248, 248, 242, 0.749);
   --color5: rgba(248, 248, 242, 0.251);
+  --font1: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --font2: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu Condensed, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font1);
   background-color: var(--color1);
   margin: 0;
   padding: 0;
@@ -77,7 +80,7 @@ body {
 
 <style scoped>
 #app {
-  max-width: 600px;
+  max-width: 620px;
   padding: 0px 20px;
   margin: auto;
 }

@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
 #addTodo {
-  padding: 20px 0;
+  padding: 20px 10px;
   height: 40px;
 }
 form {

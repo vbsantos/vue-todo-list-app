@@ -10,6 +10,7 @@
       v-bind:key="todo.id"
       v-bind:todo="todo"
     />
+    <div id="message" v-bind:class="{ 'hidden': existTodos }">Don't you have something to do?</div>
   </div>
 </template>
 
@@ -22,8 +23,11 @@ export default {
     TodoItem,
   },
   computed: {
-    todos: function() {
+    todos() {
       return this.$store.state.todos;
+    },
+    existTodos() {
+      return this.$store.state.todos.length > 0;
     },
   },
   methods: {
@@ -58,5 +62,14 @@ export default {
 <style scoped>
 #todos {
   min-height: calc(100vh - 229px);
+}
+#message {
+  text-align: center;
+  padding-top: 20vh;
+  font-size: 18px;
+  color: var(--color5);
+}
+.hidden {
+  display: none;
 }
 </style>
