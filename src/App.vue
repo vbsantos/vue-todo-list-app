@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-bind:class="{ 'loading': loading }">
+  <div id="app" v-bind:class="{ loading: loading }">
     <Header />
     <router-view />
     <Footer />
@@ -42,6 +42,9 @@ body {
   margin: 0;
   padding: 0;
 }
+body * {
+  user-select: none;
+}
 .loading * {
   cursor: wait !important;
 }
@@ -80,7 +83,7 @@ body {
 
 <style scoped>
 #app {
-  max-width: 620px;
+  max-width: 640px;
   padding: 0px 20px;
   margin: auto;
 }

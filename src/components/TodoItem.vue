@@ -18,8 +18,15 @@
       draggable="false"
       id="todo-title"
       v-bind:class="{ selected: todo.completed }"
-    >{{ todo.title }}</p>
-    <button draggable="false" id="delete-btn" class="neomorphic-btn" @click="deleteTodo">
+    >
+      {{ todo.title }}
+    </p>
+    <button
+      draggable="false"
+      id="delete-btn"
+      class="neomorphic-btn"
+      @click="deleteTodo"
+    >
       <img draggable="false" class="icon" src="../assets/trash-icon.png" />
     </button>
   </div>
@@ -43,10 +50,11 @@ export default {
 <style scoped>
 #todo-item {
   display: flex;
-  padding: 20px 10px;
+  padding: 20px 20px;
   margin: 0;
   font-family: var(--font2);
   background-color: var(--color1);
+  border-radius: 20px;
 }
 #check-btn {
   height: 40px;
