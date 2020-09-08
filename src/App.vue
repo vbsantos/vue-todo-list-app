@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-bind:class="{ loading: loading }">
+  <div id="app" v-bind:class="{ loading }">
     <Header />
     <router-view />
     <Footer />

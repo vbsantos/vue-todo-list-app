@@ -1,13 +1,14 @@
-import { createStore } from "vuex";
+import Vue from "vue";
+import Vuex from "vuex";
 import mutationTypes from "./mutation-types";
 import Storage from "../functions/storage";
 
-export default createStore({
+Vue.use(Vuex);
+
+export default new Vuex.Store({
   state: {
     loading: false,
     todos: [],
-    oldTodoIndex: -1,
-    newTodoIndex: -1,
   },
   mutations: {
     SET_LOADING_STATUS: (state, status) => {
@@ -16,21 +17,9 @@ export default createStore({
     SET_TODOS: (state, todos) => {
       state.todos = todos;
     },
-    DRAG_TODO: (state, index) => {
-      state.oldTodoIndex = index;
-    },
-    DROP_TODO: (state, index) => {
-      state.newTodoIndex = index;
-    },
-    SWAP_TODOS: (state) => {
-      if (state.oldTodoIndex < 0 || state.newTodoIndex < 0) {
-        return;
-      }
-      const todo = state.todos[state.oldTodoIndex];
-      state.todos.splice(state.oldTodoIndex, 1);
-      state.todos.splice(state.newTodoIndex, 0, { ...todo });
-      state.oldTodoIndex = -1;
-      state.newTodoIndex = -1;
+    REORDER_TODOS: (state, [oldIndex, newIndex]) => {
+      const todo = state.todos.splice(oldIndex, 1)[0];
+      state.todos.splice(newIndex, 0, todo);
     },
   },
   actions: {
@@ -58,20 +47,16 @@ export default createStore({
       commit(mutationTypes.SET_LOADING_STATUS, false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    dragTodo: async function({ commit }, index) {
-      commit(mutationTypes.DRAG_TODO, index);
-    },
-    dropTodo: async function({ commit }, index) {
+    reorderTodos: async function({ commit }, index) {
       commit(mutationTypes.SET_LOADING_STATUS, true);
-      commit(mutationTypes.DROP_TODO, index);
-      commit(mutationTypes.SWAP_TODOS);
+      commit(mutationTypes.REORDER_TODOS, index);
       await Storage.storeTodos(this.state.todos);
       commit(mutationTypes.SET_LOADING_STATUS, false);
     },
   },
-  getters: {
-    invertedTodos: (state) => {
-      return state.todos.sort((a, b) => b - a);
-    },
-  },
+  // getters: {
+  //   invertedTodos: (state) => {
+  //     return state.todos.sort((a, b) => b - a);
+  //   },
+  // },
 });

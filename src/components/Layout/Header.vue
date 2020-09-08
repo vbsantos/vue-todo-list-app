@@ -46,7 +46,7 @@ export default {
   padding: 0;
   font-family: var(--font2);
 }
-.router-link-active {
+.router-link-exact-active {
   font-weight: 800;
   cursor: default;
   text-decoration: none !important;

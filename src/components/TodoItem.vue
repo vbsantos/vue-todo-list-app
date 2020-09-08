@@ -71,7 +71,6 @@ export default {
   padding: 0 20px;
   margin: 0;
   word-wrap: break-word;
-  cursor: grab;
 }
 #delete-btn {
   height: 40px;

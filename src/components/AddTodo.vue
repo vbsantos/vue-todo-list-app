@@ -1,25 +1,61 @@
 <template>
   <div id="addTodo">
-    <form @submit="addTodo">
-      <input id="text-input" type="text" v-model="title" name="title" placeholder="Add Todo..." />
-      <input
-        id="submit-btn"
-        type="submit"
-        value="ADD"
-        v-bind:class="{ empty: title == '' }"
-        class="neomorphic-btn"
-      />
-    </form>
+    <input
+      id="text-input"
+      type="text"
+      v-model="title"
+      name="title"
+      placeholder="Add Todo..."
+      v-on:keydown.enter="addTodo"
+    />
+    <twemoji-picker
+      :emojiData="emojiDataAll"
+      :emojiGroups="emojiGroups"
+      @emojiUnicodeAdded="emojiUnicodeAdded"
+      :searchEmojisFeat="true"
+      :pickerWidth="450"
+      :pickerHeight="180"
+      ><template v-slot:twemoji-picker-button>
+        <button id="emoji-btn" class="neomorphic-btn">
+          <img class="icon" src="../assets/emoji-icon.png" />
+        </button>
+      </template>
+    </twemoji-picker>
+    <button
+      id="submit-btn"
+      @click="addTodo"
+      v-bind:class="{ empty: title == '' }"
+      class="neomorphic-btn"
+    >
+      ADD
+    </button>
   </div>
 </template>
 
 <script>
+import { TwemojiPicker } from "@kevinfaguiar/vue-twemoji-picker";
+import EmojiAllData from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-all-groups.json";
+import EmojiDataAnimalsNature from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-group-animals-nature.json";
+import EmojiDataFoodDrink from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-group-food-drink.json";
+import EmojiGroups from "@kevinfaguiar/vue-twemoji-picker/emoji-data/emoji-groups.json";
+
 export default {
   name: "AddTodo",
-  data() {
+  components: {
+    "twemoji-picker": TwemojiPicker,
+  },
+  data: () => {
     return {
       title: "",
     };
+  },
+  computed: {
+    emojiDataAll() {
+      return EmojiAllData.filter((emoji) => emoji.group !== 2);
+    },
+    emojiGroups() {
+      return EmojiGroups.filter((emoji) => emoji.group !== 2);
+    },
   },
   methods: {
     addTodo(e) {
@@ -34,16 +70,19 @@ export default {
 
       this.title = "";
     },
+    emojiUnicodeAdded(e) {
+      this.title += e;
+      document.getElementById("text-input").click();
+      document.getElementById("text-input").focus();
+    },
   },
 };
 </script>
 
 <style scoped>
 #addTodo {
-  padding: 20px 10px;
+  padding: 20px 20px;
   height: 40px;
-}
-form {
   display: flex;
 }
 #text-input {
@@ -52,7 +91,7 @@ form {
   font-size: 24px;
   width: 100%;
   min-width: 10px;
-  border: 0px solid;
+  border: 0px;
   background-color: transparent;
   color: var(--color4);
 }
@@ -61,14 +100,39 @@ form {
 }
 #text-input::placeholder {
   color: var(--color5);
-  opacity: 10;
+  opacity: 1;
 }
 #submit-btn {
+  text-align: center;
+  line-height: 40px;
+  font-size: 24px;
+  width: 100px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+#text-input:-webkit-autofill,
+#text-input:-webkit-autofill:hover,
+#text-input:-webkit-autofill:focus,
+#text-input:-webkit-autofill:active {
+  -webkit-box-shadow: inset 0 0 0 30px var(--color1);
+}
+#text-input:-webkit-autofill {
+  -webkit-text-fill-color: var(--color4);
+  caret-color: white;
+}
+#emoji-btn .icon {
+  padding-top: 7px;
+  width: 25px;
+  height: 25px;
+  filter: invert(100%);
+  opacity: 0.7;
+}
+#emoji-btn {
   height: 40px;
   line-height: 40px;
   font-size: 24px;
-  width: 99px;
+  width: 40px;
   margin-left: 10px;
-  cursor: pointer;
+  margin-right: 20px;
 }
 </style>
