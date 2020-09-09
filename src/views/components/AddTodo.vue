@@ -15,9 +15,10 @@
       :searchEmojisFeat="true"
       :pickerWidth="450"
       :pickerHeight="180"
-      ><template v-slot:twemoji-picker-button>
+    >
+      <template v-slot:twemoji-picker-button>
         <button id="emoji-btn" class="neomorphic-btn">
-          <img class="icon" src="../assets/emoji-icon.png" />
+          <img class="icon" src="../../assets/emoji-icon.png" />
         </button>
       </template>
     </twemoji-picker>
@@ -26,9 +27,7 @@
       @click="addTodo"
       v-bind:class="{ empty: title == '' }"
       class="neomorphic-btn"
-    >
-      ADD
-    </button>
+    >ADD</button>
   </div>
 </template>
 

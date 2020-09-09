@@ -7,8 +7,8 @@
 
 <script>
 // Import Components
-import Todos from "../components/Todos";
-import AddTodo from "../components/AddTodo";
+import Todos from "./components/Todos";
+import AddTodo from "./components/AddTodo";
 export default {
   name: "Home",
   components: { AddTodo, Todos },

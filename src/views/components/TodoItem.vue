@@ -11,23 +11,16 @@
         draggable="false"
         class="icon"
         v-bind:class="{ selected: todo.completed }"
-        src="../assets/check-icon.png"
+        src="../../assets/check-icon.png"
       />
     </button>
     <p
       draggable="false"
       id="todo-title"
       v-bind:class="{ selected: todo.completed }"
-    >
-      {{ todo.title }}
-    </p>
-    <button
-      draggable="false"
-      id="delete-btn"
-      class="neomorphic-btn"
-      @click="deleteTodo"
-    >
-      <img draggable="false" class="icon" src="../assets/trash-icon.png" />
+    >{{ todo.title }}</p>
+    <button draggable="false" id="delete-btn" class="neomorphic-btn" @click="deleteTodo">
+      <img draggable="false" class="icon" src="../../assets/trash-icon.png" />
     </button>
   </div>
 </template>
