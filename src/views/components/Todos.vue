@@ -1,6 +1,7 @@
 <template>
   <div id="todos">
     <SlickList
+      v-if="todos.length > 0"
       helperClass="dragging"
       lockAxis="y"
       :distance="20"
@@ -9,11 +10,18 @@
       :draggedSettlingDuration="80"
       @sort-end="handleDrogEnd"
     >
-      <slickItem v-for="(todo, index) in todos" v-bind:key="todo.id" v-bind:index="index">
+      <slickItem
+        v-for="(todo, index) in todos"
+        v-bind:key="todo.id"
+        v-bind:index="index"
+      >
         <TodoItem v-bind:todo="todo" />
       </slickItem>
     </SlickList>
-    <div id="message" v-bind:class="{ hidden: todos.length > 0 }">Don't you have something to do?</div>
+    <div v-else id="message">
+      <img src="../../assets/check-icon.png" />
+      <p>Don't you have something to do?</p>
+    </div>
   </div>
 </template>
 
@@ -50,12 +58,15 @@ export default {
 }
 #message {
   text-align: center;
-  padding-top: 20vh;
+  padding-top: calc(19vh);
   font-size: 18px;
   color: var(--color5);
 }
-.hidden {
-  display: none;
+#message img {
+  width: 125px;
+  height: 125px;
+  filter: invert(100%);
+  opacity: 0.25;
 }
 .dragging {
   border-radius: 20px;
