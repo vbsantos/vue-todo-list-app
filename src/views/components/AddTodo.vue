@@ -13,12 +13,12 @@
       :emojiGroups="emojiGroups"
       @emojiUnicodeAdded="emojiUnicodeAdded"
       :searchEmojisFeat="true"
-      :pickerWidth="450"
+      :pickerWidth="455"
       :pickerHeight="180"
     >
       <template v-slot:twemoji-picker-button>
         <button id="emoji-btn" class="neomorphic-btn">
-          <img class="icon" src="../../assets/emoji-icon.png" />
+          <img draggable="false" class="icon" src="../../assets/emoji-icon.png" />
         </button>
       </template>
     </twemoji-picker>
@@ -37,7 +37,6 @@ import EmojiAllData from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-a
 import EmojiDataAnimalsNature from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-group-animals-nature.json";
 import EmojiDataFoodDrink from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-group-food-drink.json";
 import EmojiGroups from "@kevinfaguiar/vue-twemoji-picker/emoji-data/emoji-groups.json";
-
 export default {
   name: "AddTodo",
   components: {
@@ -70,10 +69,26 @@ export default {
       this.title = "";
     },
     emojiUnicodeAdded(e) {
-      this.title += e;
-      document.getElementById("text-input").click();
-      document.getElementById("text-input").focus();
+      const inputField = document.getElementById("text-input");
+      const caretPosition = inputField.selectionStart;
+      this.title =
+        this.title.slice(0, caretPosition) +
+        e +
+        this.title.slice(caretPosition, this.title.length);
+      inputField.click();
+      inputField.focus();
     },
+    emojiContainerOpened(e) {
+      const emojiContainer = document.getElementById("popper-container");
+      if (emojiContainer.style.inset !== "auto auto 0px 0px") return;
+      const searchEmojiField = document.getElementById("search-header")
+        .childNodes[2];
+      searchEmojiField.focus();
+    },
+  },
+  mounted() {
+    const emojiButton = document.getElementById("popper-button");
+    emojiButton.onclick = this.emojiContainerOpened;
   },
 };
 </script>
@@ -85,6 +100,7 @@ export default {
   display: flex;
 }
 #text-input {
+  user-select: text;
   height: 40px;
   line-height: 40px;
   font-size: 24px;
@@ -105,8 +121,8 @@ export default {
   text-align: center;
   line-height: 40px;
   font-size: 24px;
-  width: 100px;
-  margin-left: 10px;
+  min-width: 80px;
+  margin-left: 40px;
   cursor: pointer;
 }
 #text-input:-webkit-autofill,
@@ -129,9 +145,7 @@ export default {
 #emoji-btn {
   height: 40px;
   line-height: 40px;
-  font-size: 24px;
   width: 40px;
-  margin-left: 10px;
-  margin-right: 20px;
+  cursor: pointer;
 }
 </style>
