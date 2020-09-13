@@ -245,7 +245,6 @@ export default {
   padding-top: 7px;
   width: 25px;
   height: 25px;
-  filter: invert(100%);
   opacity: 0.65;
 }
 .delete-btn .icon {
@@ -265,7 +264,7 @@ export default {
   padding-left: 1px;
   width: 25px;
   height: 25px;
-  filter: invert(100%);
+  filter: var(--svg);
 }
 .check-btn .icon.selected {
   opacity: 1 !important;

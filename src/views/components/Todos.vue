@@ -61,12 +61,12 @@ export default {
 #message img {
   width: 125px;
   height: 125px;
-  filter: invert(100%);
+  filter: var(--svg);
   opacity: 0.25;
 }
 .dragging {
   border-radius: 20px;
-  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 4px 2px var(--dark-shadow);
   rotate: 2deg !important;
 }
 </style>

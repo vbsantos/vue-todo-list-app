@@ -152,7 +152,7 @@ export default {
   padding-top: 7px;
   width: 25px;
   height: 25px;
-  filter: invert(100%);
+  filter: var(--svg);
   opacity: 0.65;
 }
 #emoji-btn {

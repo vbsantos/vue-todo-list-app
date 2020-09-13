@@ -3,7 +3,7 @@
     <h1 id="title">Todo-List</h1>
     <div id="nav">
       <router-link to="/">Home</router-link>
-      {{ " | " }}
+      <img id="theme-toggle" @click="toggleTheme" src="../../../assets/theme-icon.svg" />
       <router-link to="/about">About</router-link>
     </div>
   </header>
@@ -12,6 +12,13 @@
 <script>
 export default {
   name: "Header",
+  methods: {
+    toggleTheme: () => {
+      const appElement = document.getElementsByTagName("HTML")[0];
+      const isDark = appElement.attributes["theme-colors"].value === "dark";
+      appElement.setAttribute("theme-colors", isDark ? "light" : "dark");
+    },
+  },
 };
 </script>
 
@@ -50,5 +57,13 @@ export default {
   font-weight: 800;
   cursor: default;
   text-decoration: none !important;
+}
+#theme-toggle {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  margin: 0 5px -1px;
+  filter: var(--svg);
+  opacity: 0.75;
 }
 </style>
