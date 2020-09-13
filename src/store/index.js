@@ -35,9 +35,9 @@ export default new Vuex.Store({
       commit(mutationTypes.SET_LOADING_STATUS, false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    toggleTodo: async function({ commit }, todo) {
+    editTodo: async function({ commit }, todo) {
       commit(mutationTypes.SET_LOADING_STATUS, true);
-      const todos = await Storage.toggleTodo(todo);
+      const todos = await Storage.editTodo(todo.id, todo);
       commit(mutationTypes.SET_LOADING_STATUS, false);
       commit(mutationTypes.SET_TODOS, todos);
     },

@@ -26,13 +26,20 @@ function storageAvailable(type) {
 }
 
 export default {
-  async toggleTodo(toggle_todo) {
+  async editTodo(id, newTodo) {
     try {
       if (!storageAvailable("localStorage")) throw "Storage not available!";
       let todos = JSON.parse(localStorage["todos"]);
-      todos.find(
-        (todo) => todo.id === toggle_todo.id
-      ).completed = !toggle_todo.completed;
+      const todo = Object.assign(
+        todos.find((todo) => todo.id === id),
+        newTodo
+      );
+      todos = todos.filter((temp_todo) => {
+        if (temp_todo.id !== id) {
+          return temp_todo;
+        }
+        return todo;
+      });
       localStorage["todos"] = JSON.stringify(todos);
       return todos;
     } catch (error) {

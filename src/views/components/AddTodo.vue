@@ -1,6 +1,7 @@
 <template>
   <div id="addTodo">
     <input
+      autocomplete="off"
       id="text-input"
       type="text"
       v-model="title"
@@ -80,7 +81,12 @@ export default {
     },
     emojiContainerOpened(e) {
       const emojiContainer = document.getElementById("popper-container");
-      if (emojiContainer.style.inset !== "auto auto 0px 0px") return;
+      if (
+        (emojiContainer.style.inset &&
+          emojiContainer.style.inset !== "auto auto 0px 0px") ||
+        (emojiContainer.style.top && emojiContainer.style.top !== "auto")
+      )
+        return;
       const searchEmojiField = document.getElementById("search-header")
         .childNodes[2];
       searchEmojiField.focus();
@@ -109,20 +115,27 @@ export default {
   border: 0px;
   background-color: transparent;
   color: var(--color4);
+  margin-right: 20px;
 }
 #text-input:focus {
   outline: none;
+  background-color: var(--color6);
+  border-radius: 10px;
+  padding: 0 20px;
 }
 #text-input::placeholder {
   color: var(--color5);
   opacity: 1;
 }
+#text-input:focus::placeholder {
+  opacity: 0;
+}
 #submit-btn {
   text-align: center;
   line-height: 40px;
   font-size: 24px;
-  min-width: 80px;
-  margin-left: 40px;
+  min-width: 100px;
+  margin-left: 20px;
   cursor: pointer;
 }
 #text-input:-webkit-autofill,
@@ -140,7 +153,7 @@ export default {
   width: 25px;
   height: 25px;
   filter: invert(100%);
-  opacity: 0.7;
+  opacity: 0.65;
 }
 #emoji-btn {
   height: 40px;

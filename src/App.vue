@@ -29,8 +29,9 @@ export default {
   --color1: rgb(35, 41, 56);
   --color2: rgb(70, 207, 104);
   --color3: rgb(255, 85, 85);
-  --color4: rgba(248, 248, 242, 0.749);
-  --color5: rgba(248, 248, 242, 0.251);
+  --color4: rgb(248, 248, 242, 0.75);
+  --color5: rgb(248, 248, 242, 0.25);
+  --color6: rgb(248, 248, 242, 0.05);
   --font1: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
     Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --font2: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -53,8 +54,8 @@ body * {
   color: var(--color4);
   border: solid 1px transparent;
   border-radius: 10px;
-  box-shadow: 3px 3px 7px 0px rgba(0, 0, 0, 0.5),
-    -3px -3px 7px 0px rgba(255, 255, 255, 0.2);
+  box-shadow: 3px 3px 6px 1px rgba(5, 5, 10, 0.5),
+    -3px -3px 6px 1px rgba(255, 255, 255, 0.1);
   background-color: transparent;
 }
 .neomorphic-btn:focus {
@@ -62,8 +63,8 @@ body * {
 }
 .neomorphic-btn:active {
   border: none;
-  box-shadow: inset 3px 3px 7px 0px rgba(0, 0, 0, 0.5),
-    inset -3px -3px 7px 0px rgba(255, 255, 255, 0.2);
+  box-shadow: inset 3px 3px 6px 1px rgba(5, 5, 10, 0.5),
+    inset -3px -3px 6px 1px rgba(255, 255, 255, 0.1);
   background-color: var(--color2);
 }
 .empty.neomorphic-btn:active {
@@ -75,8 +76,8 @@ body * {
 .neomorphic-btn-active {
   border: none;
   box-shadow: none;
-  box-shadow: inset 3px 3px 7px 0px rgba(0, 0, 0, 0.7),
-    inset -3px -3px 7px 0px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 3px 3px 6px 1px rgba(5, 5, 10, 0.7),
+    inset -3px -3px 6px 1px rgba(255, 255, 255, 0.2);
   background-color: var(--color2);
 }
 </style>

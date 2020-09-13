@@ -10,11 +10,7 @@
       :draggedSettlingDuration="80"
       @sort-end="handleDrogEnd"
     >
-      <slickItem
-        v-for="(todo, index) in todos"
-        v-bind:key="todo.id"
-        v-bind:index="index"
-      >
+      <slickItem v-for="(todo, index) in todos" v-bind:key="todo.id" v-bind:index="index">
         <TodoItem v-bind:todo="todo" />
       </slickItem>
     </SlickList>
