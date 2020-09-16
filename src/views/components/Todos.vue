@@ -24,7 +24,6 @@
 <script>
 // Import Components
 import { SlickList, SlickItem } from "vue-slicksort";
-
 import TodoItem from "./TodoItem";
 export default {
   name: "Todos",

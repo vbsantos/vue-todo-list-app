@@ -2,7 +2,7 @@ const path = require("path");
 const pkg = require("./package");
 
 module.exports = {
-  transformModules: ['@kevinfaguiar'],
+  transformModules: ["@kevinfaguiar"],
   entry: ["src/polyfills.js", "src/index.js"],
   html: {
     title: pkg.productName,
