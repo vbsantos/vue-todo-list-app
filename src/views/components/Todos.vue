@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     todos() {
-      return this.$store.state.todos;
+      return this.$store.getters.todos;
     },
   },
   methods: {
@@ -67,6 +67,7 @@ export default {
 .dragging {
   border-radius: 20px;
   box-shadow: 2px 2px 4px 2px var(--dark-shadow);
-  rotate: 2deg !important;
+  background-color: var(--color1);
+  /* rotate: 2deg !important; */
 }
 </style>
