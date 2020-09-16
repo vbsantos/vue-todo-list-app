@@ -1,5 +1,5 @@
 import mutationTypes from "./mutation-types";
-import Storage from "../../functions/storage/todos";
+import Storage from "@/functions/storage/todos";
 
 export const todos = {
   state: {

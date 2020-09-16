@@ -10,12 +10,16 @@
       :draggedSettlingDuration="80"
       @sort-end="handleDrogEnd"
     >
-      <slickItem v-for="(todo, index) in todos" v-bind:key="todo.id" v-bind:index="index">
+      <slickItem
+        v-for="(todo, index) in todos"
+        v-bind:key="todo.id"
+        v-bind:index="index"
+      >
         <TodoItem v-bind:todo="todo" />
       </slickItem>
     </SlickList>
     <div v-else id="message">
-      <img src="../../assets/check-icon.png" />
+      <img src="@/assets/check-icon.png" />
       <p>Don't you have something to do?</p>
     </div>
   </div>

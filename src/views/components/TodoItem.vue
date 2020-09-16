@@ -12,7 +12,7 @@
         draggable="false"
         class="icon"
         v-bind:class="{ selected: todo.completed }"
-        src="../../assets/check-icon.png"
+        src="@/assets/check-icon.png"
       />
     </button>
     <button
@@ -22,22 +22,25 @@
       class="edit-btn neomorphic-btn"
       @click="editTodo"
     >
-      <img draggable="false" class="icon" src="../../assets/edit-icon.png" />
+      <img draggable="false" class="icon" src="@/assets/edit-icon.png" />
     </button>
 
     <!-- todo title and edit input -->
     <p
       v-if="!editMode"
       class="todo-title"
-      :id="'todo-title-'+todo.id"
+      :id="'todo-title-' + todo.id"
       @dblclick="(e) => setEditMode(e, true)"
       draggable="false"
       v-bind:class="{ selected: todo.completed }"
-    >{{ todo.title }}</p>
+    >
+      {{ todo.title }}
+    </p>
     <input
       class="todo-title-edit"
-      :id="'todo-title-edit-'+todo.id"
+      :id="'todo-title-edit-' + todo.id"
       type="text"
+      spellcheck="false"
       v-model="editTitle"
       @keydown.enter="editTodo"
     />
@@ -54,7 +57,7 @@
     >
       <template v-slot:twemoji-picker-button>
         <button :id="'emoji-btn-' + todo.id" class="emoji-btn neomorphic-btn">
-          <img draggable="false" class="icon" src="../../assets/emoji-icon.png" />
+          <img draggable="false" class="icon" src="@/assets/emoji-icon.png" />
         </button>
       </template>
     </twemoji-picker>
@@ -65,7 +68,7 @@
       class="delete-btn neomorphic-btn"
       @click="deleteTodo"
     >
-      <img draggable="false" class="icon" src="../../assets/trash-icon.png" />
+      <img draggable="false" class="icon" src="@/assets/trash-icon.png" />
     </button>
   </div>
 </template>

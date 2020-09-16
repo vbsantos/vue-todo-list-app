@@ -1,5 +1,5 @@
 import mutationTypes from "./mutation-types";
-import Storage from "../../functions/storage/themes";
+import Storage from "@/functions/storage/themes";
 
 export const themes = {
   state: {

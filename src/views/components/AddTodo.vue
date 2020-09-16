@@ -2,6 +2,7 @@
   <div id="addTodo">
     <input
       autocomplete="off"
+      spellcheck="false"
       id="text-input"
       type="text"
       v-model="title"
@@ -19,7 +20,7 @@
     >
       <template v-slot:twemoji-picker-button>
         <button id="emoji-btn" class="neomorphic-btn">
-          <img draggable="false" class="icon" src="../../assets/emoji-icon.png" />
+          <img draggable="false" class="icon" src="@/assets/emoji-icon.png" />
         </button>
       </template>
     </twemoji-picker>
@@ -28,7 +29,9 @@
       @click="addTodo"
       v-bind:class="{ empty: title == '' }"
       class="neomorphic-btn"
-    >ADD</button>
+    >
+      ADD
+    </button>
   </div>
 </template>
 
