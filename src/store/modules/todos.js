@@ -1,5 +1,5 @@
 import mutationTypes from "./mutation-types";
-import Storage from "../../functions/storage";
+import Storage from "../../functions/storage/todos";
 
 export const todos = {
   state: {
@@ -21,39 +21,40 @@ export const todos = {
   },
 
   actions: {
-    loadTodos: async function({ commit }) {
+    async loadTodos({ commit }) {
       commit(mutationTypes.SET_LOADING_STATUS, true);
       const todos = await Storage.loadTodos();
       commit(mutationTypes.SET_LOADING_STATUS, false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    addTodo: async function({ commit }, todo) {
+    async addTodo({ commit }, todo) {
       commit(mutationTypes.SET_LOADING_STATUS, true);
       const todos = await Storage.addTodo(todo);
       commit(mutationTypes.SET_LOADING_STATUS, false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    editTodo: async function({ commit }, todo) {
+    async editTodo({ commit }, todo) {
       commit(mutationTypes.SET_LOADING_STATUS, true);
       const todos = await Storage.editTodo(todo.id, todo);
       commit(mutationTypes.SET_LOADING_STATUS, false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    deleteTodo: async function({ commit }, todo_id) {
+    async deleteTodo({ commit }, todo_id) {
       commit(mutationTypes.SET_LOADING_STATUS, true);
       const todos = await Storage.deleteTodo(todo_id);
       commit(mutationTypes.SET_LOADING_STATUS, false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    reorderTodos: async function({ commit }, index) {
+    async reorderTodos({ commit, state }, index) {
       commit(mutationTypes.SET_LOADING_STATUS, true);
       commit(mutationTypes.REORDER_TODOS, index);
-      await Storage.storeTodos(this.state.todos);
+      await Storage.storeTodos(state.todos);
       commit(mutationTypes.SET_LOADING_STATUS, false);
     },
   },
 
   getters: {
     todos: (state) => state.todos,
+    loading: (state) => state.loading,
   },
 };

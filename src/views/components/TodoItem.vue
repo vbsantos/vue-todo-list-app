@@ -71,12 +71,12 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { TwemojiPicker } from "@kevinfaguiar/vue-twemoji-picker";
 import EmojiAllData from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-all-groups.json";
 import EmojiDataAnimalsNature from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-group-animals-nature.json";
 import EmojiDataFoodDrink from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-group-food-drink.json";
 import EmojiGroups from "@kevinfaguiar/vue-twemoji-picker/emoji-data/emoji-groups.json";
-import Vue from "vue";
 export default {
   name: "TodoItem",
   components: {
@@ -178,7 +178,6 @@ export default {
   padding: 20px 20px;
   margin: 0;
   font-family: var(--font2);
-  background-color: var(--color1);
   border-radius: 20px;
 }
 .todo-title {
@@ -267,6 +266,6 @@ export default {
   filter: var(--svg);
 }
 .check-btn .icon.selected {
-  opacity: 1 !important;
+  opacity: var(--check) !important;
 }
 </style>

@@ -68,6 +68,5 @@ export default {
   border-radius: 20px;
   box-shadow: 2px 2px 4px 2px var(--dark-shadow);
   background-color: var(--color1);
-  /* rotate: 2deg !important; */
 }
 </style>

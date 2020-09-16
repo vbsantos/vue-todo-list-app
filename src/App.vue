@@ -18,7 +18,29 @@ export default {
   },
   computed: {
     loading() {
-      return this.$store.state.loading;
+      return this.$store.getters.loading;
+    },
+    theme() {
+      return this.$store.getters.theme;
+    },
+  },
+  created() {
+    this.$store.dispatch("loadTodos");
+    this.$store.dispatch("getColorTheme");
+  },
+  watch: {
+    theme() {
+      const appElement = document.getElementsByTagName("HTML")[0];
+      this.transition(appElement);
+      appElement.setAttribute("theme-colors", this.$store.getters.theme);
+    },
+  },
+  methods: {
+    async transition(element) {
+      element.classList.add("transition");
+      window.setTimeout(() => {
+        element.classList.remove("transition");
+      }, 300);
     },
   },
 };
@@ -31,7 +53,7 @@ export default {
   --font2: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu Condensed, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-html[theme-colors="dark"] {
+html[theme-colors="default"] {
   --color1: rgb(35, 41, 56);
   --color2: rgb(70, 207, 104);
   --color3: rgb(255, 85, 85);
@@ -41,18 +63,30 @@ html[theme-colors="dark"] {
   --light-shadow: rgba(194, 211, 255, 0.2);
   --dark-shadow: rgba(0, 12, 43, 0.6);
   --svg: invert(100%);
+  --check: 0.9;
 }
 html[theme-colors="light"] {
   --color1: rgb(189, 208, 255);
-  --color2: rgb(23, 204, 69);
-  --color3: rgb(255, 85, 85);
+  --color2: rgb(100, 255, 75);
+  --color3: rgb(255, 75, 100);
   --color4: rgba(0, 10, 30, 0.75);
   --color5: rgb(0, 10, 30, 0.25);
   --color6: rgb(0, 10, 30, 0.05);
-  --light-shadow: rgba(228, 230, 255, 0.6);
+  --light-shadow: rgba(241, 228, 255, 0.6);
   --dark-shadow: rgba(0, 4, 60, 0.25);
   --svg: invert(25%) sepia(90%) saturate(1350%) hue-rotate(200deg)
     brightness(30%);
+  --check: 0.7;
+}
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: background-color 250ms ease !important ;
+  -webkit-transition: background-color 250ms ease !important ;
+  -moz-transition: background-color 250ms ease !important ;
+  -o-transition: background-color 250ms ease !important ;
+  -ms-transition: background-color 250ms ease !important ;
 }
 body {
   font-family: var(--font1);
@@ -102,7 +136,7 @@ body * {
 <style scoped>
 #app {
   max-width: 640px;
-  padding: 0px 20px;
-  margin: auto;
+  padding: 0px 5px;
+  margin: 0 auto;
 }
 </style>

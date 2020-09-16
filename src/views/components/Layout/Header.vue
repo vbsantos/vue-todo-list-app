@@ -10,13 +10,12 @@
 </template>
 
 <script>
+import Vue from "vue";
 export default {
   name: "Header",
   methods: {
-    toggleTheme: () => {
-      const appElement = document.getElementsByTagName("HTML")[0];
-      const isDark = appElement.attributes["theme-colors"].value === "dark";
-      appElement.setAttribute("theme-colors", isDark ? "light" : "dark");
+    async toggleTheme() {
+      this.$store.dispatch("toggleColorTheme");
     },
   },
 };

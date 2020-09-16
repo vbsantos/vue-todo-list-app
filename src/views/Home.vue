@@ -12,8 +12,5 @@ import AddTodo from "./components/AddTodo";
 export default {
   name: "Home",
   components: { AddTodo, Todos },
-  created() {
-    this.$store.dispatch("loadTodos");
-  },
 };
 </script>
