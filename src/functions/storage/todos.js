@@ -49,7 +49,7 @@ export default {
     try {
       if (!storageAvailable("localStorage")) throw "Storage not available!";
       let todos = JSON.parse(localStorage["todos"]);
-      todos = [...todos, todo];
+      todos = [todo, ...todos];
       localStorage["todos"] = JSON.stringify(todos);
       return todos;
     } catch (error) {
