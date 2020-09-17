@@ -3,14 +3,10 @@ import Storage from "@/functions/storage/todos";
 
 export const todos = {
   state: {
-    loading: false,
     todos: [],
   },
 
   mutations: {
-    [mutationTypes.SET_LOADING_STATUS]: (state, status) => {
-      state.loading = status;
-    },
     [mutationTypes.SET_TODOS]: (state, todos) => {
       state.todos = todos;
     },
@@ -21,40 +17,39 @@ export const todos = {
   },
 
   actions: {
-    async loadTodos({ commit }) {
-      commit(mutationTypes.SET_LOADING_STATUS, true);
+    async loadTodos({ commit, dispatch }) {
+      dispatch("setLoading", true);
       const todos = await Storage.loadTodos();
-      commit(mutationTypes.SET_LOADING_STATUS, false);
+      dispatch("setLoading", false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    async addTodo({ commit }, todo) {
-      commit(mutationTypes.SET_LOADING_STATUS, true);
+    async addTodo({ commit, dispatch }, todo) {
+      dispatch("setLoading", true);
       const todos = await Storage.addTodo(todo);
-      commit(mutationTypes.SET_LOADING_STATUS, false);
+      dispatch("setLoading", false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    async editTodo({ commit }, todo) {
-      commit(mutationTypes.SET_LOADING_STATUS, true);
+    async editTodo({ commit, dispatch }, todo) {
+      dispatch("setLoading", true);
       const todos = await Storage.editTodo(todo.id, todo);
-      commit(mutationTypes.SET_LOADING_STATUS, false);
+      dispatch("setLoading", false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    async deleteTodo({ commit }, todo_id) {
-      commit(mutationTypes.SET_LOADING_STATUS, true);
+    async deleteTodo({ commit, dispatch }, todo_id) {
+      dispatch("setLoading", true);
       const todos = await Storage.deleteTodo(todo_id);
-      commit(mutationTypes.SET_LOADING_STATUS, false);
+      dispatch("setLoading", false);
       commit(mutationTypes.SET_TODOS, todos);
     },
-    async reorderTodos({ commit, state }, index) {
-      commit(mutationTypes.SET_LOADING_STATUS, true);
+    async reorderTodos({ commit, dispatch, state }, index) {
+      dispatch("setLoading", true);
       commit(mutationTypes.REORDER_TODOS, index);
       await Storage.storeTodos(state.todos);
-      commit(mutationTypes.SET_LOADING_STATUS, false);
+      dispatch("setLoading", false);
     },
   },
 
   getters: {
     todos: (state) => state.todos,
-    loading: (state) => state.loading,
   },
 };

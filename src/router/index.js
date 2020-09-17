@@ -6,8 +6,14 @@ import About from "../views/About.vue";
 Vue.use(VueRouter);
 
 const routes = [
-  { path: "/", component: Home },
-  { path: "/about", component: About },
+  {
+    path: "/",
+    component: Home,
+  },
+  {
+    path: "/about",
+    component: About,
+  },
 ];
 
 export default new VueRouter({

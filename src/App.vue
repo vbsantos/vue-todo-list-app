@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-bind:class="{ loading }">
+  <div id="app">
     <Header />
     <router-view />
     <Footer />
@@ -7,7 +7,6 @@
 </template>
 
 <script>
-// Import Components
 import Header from "./views/components/Layout/Header";
 import Footer from "./views/components/Layout/Footer";
 export default {
@@ -15,6 +14,10 @@ export default {
   components: {
     Header,
     Footer,
+  },
+  created() {
+    this.$store.dispatch("loadTodos");
+    this.$store.dispatch("getColorTheme");
   },
   computed: {
     loading() {
@@ -24,15 +27,15 @@ export default {
       return this.$store.getters.theme;
     },
   },
-  created() {
-    this.$store.dispatch("loadTodos");
-    this.$store.dispatch("getColorTheme");
-  },
   watch: {
     theme() {
       const appElement = document.getElementsByTagName("HTML")[0];
       this.transition(appElement);
-      appElement.setAttribute("theme-colors", this.$store.getters.theme);
+      appElement.setAttribute("theme-colors", this.theme);
+    },
+    loading() {
+      const appElement = document.getElementsByTagName("HTML")[0];
+      appElement.className = this.loading ? "loading" : "";
     },
   },
   methods: {

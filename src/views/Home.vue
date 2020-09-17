@@ -6,7 +6,6 @@
 </template>
 
 <script>
-// Import Components
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
 export default {
