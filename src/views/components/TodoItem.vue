@@ -1,8 +1,6 @@
 <template>
   <div class="todo-item">
-    <!-- button in the left -->
     <button
-      :id="'check-btn-' + todo.id"
       draggable="false"
       class="check-btn neomorphic-btn"
       v-bind:class="{ 'neomorphic-btn-active': todo.completed }"
@@ -15,59 +13,24 @@
         src="@/assets/check-icon.png"
       />
     </button>
-    <button
-      v-if="editMode"
-      :id="'edit-btn-' + todo.id"
-      draggable="false"
-      class="edit-btn neomorphic-btn"
-      @click="editTodo"
-    >
-      <img draggable="false" class="icon" src="@/assets/edit-icon.png" />
-    </button>
-
-    <!-- todo title and edit input -->
     <p
       v-if="!editMode"
       class="todo-title"
-      :id="'todo-title-' + todo.id"
-      @dblclick="(e) => setEditMode(e, true)"
+      @dblclick="$store.dispatch('startEditMode', todo.id)"
       draggable="false"
       v-bind:class="{ selected: todo.completed }"
-    >
-      {{ todo.title }}
-    </p>
-    <input
-      class="todo-title-edit"
-      :id="'todo-title-edit-' + todo.id"
-      type="text"
+    >{{ todo.title }}</p>
+    <textarea
+      @keydown.enter="editTitle"
+      @keydown.esc="cancelEditTitle"
+      @blur="cancelEditTitle"
       spellcheck="false"
-      v-model="editTitle"
-      @keydown.enter="editTodo"
+      v-else
+      class="edit-todo-title"
+      :value="todo.title"
     />
 
-    <!-- buttons in the right -->
-    <twemoji-picker
-      v-if="editMode"
-      :emojiData="emojiDataAll"
-      :emojiGroups="emojiGroups"
-      @emojiUnicodeAdded="emojiUnicodeAdded"
-      :searchEmojisFeat="false"
-      :pickerWidth="455"
-      :pickerHeight="180"
-    >
-      <template v-slot:twemoji-picker-button>
-        <button :id="'emoji-btn-' + todo.id" class="emoji-btn neomorphic-btn">
-          <img draggable="false" class="icon" src="@/assets/emoji-icon.png" />
-        </button>
-      </template>
-    </twemoji-picker>
-
-    <button
-      draggable="false"
-      :id="'delete-btn-' + todo.id"
-      class="delete-btn neomorphic-btn"
-      @click="deleteTodo"
-    >
+    <button draggable="false" class="delete-btn neomorphic-btn" @click="deleteTodo">
       <img draggable="false" class="icon" src="@/assets/trash-icon.png" />
     </button>
   </div>
@@ -75,30 +38,22 @@
 
 <script>
 import Vue from "vue";
-import { TwemojiPicker } from "@kevinfaguiar/vue-twemoji-picker";
-import EmojiAllData from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-all-groups.json";
-import EmojiDataAnimalsNature from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-group-animals-nature.json";
-import EmojiDataFoodDrink from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-group-food-drink.json";
-import EmojiGroups from "@kevinfaguiar/vue-twemoji-picker/emoji-data/emoji-groups.json";
+
 export default {
   name: "TodoItem",
-  components: {
-    "twemoji-picker": TwemojiPicker,
-  },
   props: ["todo"],
-  data() {
-    return {
-      editMode: false,
-      editInput: null,
-      editTitle: this.todo.title,
-    };
-  },
   computed: {
-    emojiDataAll() {
-      return EmojiAllData.filter((emoji) => emoji.group !== 2);
+    editMode() {
+      return this.$store.getters.editing === this.todo.id;
     },
-    emojiGroups() {
-      return EmojiGroups.filter((emoji) => emoji.group !== 2);
+  },
+  watch: {
+    editMode() {
+      if (this.editMode) {
+        Vue.nextTick(() => {
+          document.getElementsByClassName("edit-todo-title")[0].focus();
+        });
+      }
     },
   },
   methods: {
@@ -111,65 +66,19 @@ export default {
     deleteTodo() {
       this.$store.dispatch("deleteTodo", this.todo.id);
     },
-    setEditMode(e, active) {
-      this.editMode = active;
-      this.editInput = document.getElementById(
-        "todo-title-edit-" + this.todo.id
-      );
-      this.editInput.style.display = "flex";
-
-      Vue.nextTick(() => {
-        this.editInput.focus();
-      });
-
-      Vue.nextTick(() => {
-        const emojiButton = document.getElementById(
-          "emoji-btn-" + this.todo.id
-        );
-        emojiButton.onclick = this.emojiContainerOpened;
-      });
-
-      this.editInput.addEventListener("focusout", (event) => {
-        const clickTarget = event.relatedTarget;
-        if (clickTarget) {
-          if (
-            clickTarget.id === "emoji-btn-" + this.todo.id ||
-            clickTarget.id === "edit-btn-" + this.todo.id
-          )
-            return;
-          if (clickTarget.id === "check-btn-" + this.todo.id) {
-            this.editTodo();
-            return;
-          }
-        }
-        this.editMode = false;
-        this.editTitle = this.todo.title;
-        this.editInput.style.display = "none";
-      });
-    },
-    editTodo() {
-      this.editMode = false;
-      this.editInput.style.display = "none";
-      if (this.editInput.value != "") {
+    editTitle() {
+      const newTitle = document.getElementsByClassName("edit-todo-title")[0]
+        .value;
+      if (newTitle !== this.todo.title) {
         this.$store.dispatch("editTodo", {
           id: this.todo.id,
-          title: this.editInput.value,
+          title: newTitle,
         });
-      } else {
-        this.deleteTodo();
       }
+      this.$store.dispatch("stopEditMode");
     },
-    emojiUnicodeAdded(e) {
-      const inputField = document.getElementById(
-        `todo-title-edit-${this.todo.id}`
-      );
-      const caretPosition = inputField.selectionStart;
-      this.editTitle =
-        this.editTitle.slice(0, caretPosition) +
-        e +
-        this.editTitle.slice(caretPosition, this.editTitle.length);
-      inputField.click();
-      inputField.focus();
+    cancelEditTitle() {
+      this.$store.dispatch("stopEditMode");
     },
   },
 };
@@ -193,23 +102,20 @@ export default {
   margin: 0;
   word-wrap: break-word;
 }
-.todo-title-edit {
-  display: none;
-  color: var(--color4);
-  font-family: var(--font2);
-  background-color: var(--color6);
-  min-height: 40px;
-  width: calc(100% - 200px);
-  line-height: 40px;
-  font-size: 18px;
-  padding: 0 20px;
-  margin: 0 20px;
-  border: 0;
-  border-radius: 10px;
-  user-select: text;
-}
-.todo-title-edit:focus {
+.edit-todo-title {
   outline: none;
+  background-color: var(--color6);
+  border: none;
+  border-radius: 10px;
+  resize: none;
+  font-family: var(--font2);
+  font-size: 24px;
+  color: var(--color4);
+  width: calc(100% - 120px);
+  padding: 0 10px;
+  margin: 0 10px;
+  line-height: 30px;
+  min-height: 120px;
 }
 .check-btn {
   margin-top: auto;

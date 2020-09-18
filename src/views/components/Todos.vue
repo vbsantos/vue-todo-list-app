@@ -11,7 +11,7 @@
       @sort-end="handleDrogEnd"
     >
       <slickItem v-for="(todo, index) in todos" v-bind:key="todo.id" v-bind:index="index">
-        <TodoItem v-bind:todo="todo" />
+        <TodoItem :id="'todo-item-'+todo.id" v-bind:todo="todo" />
       </slickItem>
     </SlickList>
     <div v-else id="message">
