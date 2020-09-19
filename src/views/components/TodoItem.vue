@@ -51,12 +51,20 @@ export default {
     editMode() {
       if (this.editMode) {
         Vue.nextTick(() => {
-          document.getElementsByClassName("edit-todo-title")[0].focus();
+          const editTodoTextArea = document.getElementsByClassName(
+            "edit-todo-title"
+          )[0];
+          this.autoHeightTextArea(editTodoTextArea);
+          editTodoTextArea.focus();
         });
       }
     },
   },
   methods: {
+    autoHeightTextArea(textAreaElement) {
+      textAreaElement.style.height = "5px";
+      textAreaElement.style.height = `${textAreaElement.scrollHeight}px`;
+    },
     toggleTodo() {
       this.$store.dispatch("editTodo", {
         id: this.todo.id,
@@ -114,8 +122,7 @@ export default {
   width: calc(100% - 120px);
   padding: 0 10px;
   margin: 0 10px;
-  line-height: 30px;
-  min-height: 120px;
+  line-height: 40px;
 }
 .check-btn {
   margin-top: auto;
