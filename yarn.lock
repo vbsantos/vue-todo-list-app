@@ -6931,6 +6931,11 @@ vue-clickaway@^2.2.2:
   dependencies:
     loose-envify "^1.2.0"
 
+vue-global-events@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/vue-global-events/-/vue-global-events-1.2.0.tgz#156ca26c841d42016d6f27bb32c8f99430581476"
+  integrity sha512-OOOaikEsw1vPXufwEEc8JHqxn7H4i+h+xDWdS6n6nkCVYsYPsjc4mqjDXKFYKEuLkEwaWQ4dIBYioynitdhxWg==
+
 vue-hot-reload-api@^2.2.0:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
