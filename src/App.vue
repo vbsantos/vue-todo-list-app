@@ -48,10 +48,12 @@ export default {
         element.classList.remove("transition");
       }, 300);
     },
-    undoCommand() {
+    undoCommand(e) {
+      e.preventDefault();
       this.$store.dispatch("undoCommand");
     },
-    redoCommand() {
+    redoCommand(e) {
+      e.preventDefault();
       this.$store.dispatch("redoCommand");
     },
   },
