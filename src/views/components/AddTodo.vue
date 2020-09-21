@@ -29,9 +29,7 @@
       @click="addTodo"
       v-bind:class="{ empty: title == '' }"
       class="neomorphic-btn"
-    >
-      ADD
-    </button>
+    >ADD</button>
   </div>
 </template>
 
@@ -63,12 +61,25 @@ export default {
     addTodo(e) {
       e.preventDefault();
       if (!this.title) return;
+      const todo_id = new Date().toISOString();
+      const todo_title = this.title;
+      const todo_completed = false;
 
-      this.$store.dispatch("addTodo", {
-        id: new Date().toISOString(),
-        title: this.title,
-        completed: false,
-      });
+      const addTodoFunc = () => {
+        this.$store.dispatch("addTodo", {
+          id: todo_id,
+          title: todo_title,
+          completed: todo_completed,
+        });
+      };
+      addTodoFunc();
+
+      this.$store.dispatch("addCommand", [
+        addTodoFunc,
+        () => {
+          this.$store.dispatch("deleteTodo", todo_id);
+        },
+      ]);
 
       this.title = "";
     },

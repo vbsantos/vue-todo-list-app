@@ -51,37 +51,85 @@ export default {
     editMode() {
       if (this.editMode) {
         Vue.nextTick(() => {
-          const editTodoTextArea = document.getElementsByClassName(
+          const textarea = document.getElementsByClassName(
             "edit-todo-title"
           )[0];
-          this.autoHeightTextArea(editTodoTextArea);
-          editTodoTextArea.focus();
+          textarea.style.height = "5px";
+          textarea.style.height = `${textarea.scrollHeight}px`;
+          textarea.focus();
         });
       }
     },
   },
   methods: {
-    autoHeightTextArea(textAreaElement) {
-      textAreaElement.style.height = "5px";
-      textAreaElement.style.height = `${textAreaElement.scrollHeight}px`;
-    },
     toggleTodo() {
-      this.$store.dispatch("editTodo", {
-        id: this.todo.id,
-        completed: !this.todo.completed,
-      });
+      const todo_id = this.todo.id;
+      const todo_completed = this.todo.completed;
+
+      const toggleTodoFunc = () => {
+        this.$store.dispatch("editTodo", {
+          id: todo_id,
+          completed: !todo_completed,
+        });
+      };
+      toggleTodoFunc();
+
+      this.$store.dispatch("addCommand", [
+        toggleTodoFunc,
+        () => {
+          this.$store.dispatch("editTodo", {
+            id: todo_id,
+            completed: todo_completed,
+          });
+        },
+      ]);
     },
     deleteTodo() {
-      this.$store.dispatch("deleteTodo", this.todo.id);
+      const todo_id = this.todo.id;
+      const todo_completed = this.todo.completed;
+      const todo_title = this.todo.title;
+
+      const deleteTodoFunc = () => {
+        this.$store.dispatch("deleteTodo", todo_id);
+      };
+      deleteTodoFunc();
+
+      this.$store.dispatch("addCommand", [
+        deleteTodoFunc,
+        () => {
+          this.$store.dispatch("addTodo", {
+            id: todo_id,
+            title: todo_title,
+            completed: todo_completed,
+          });
+        },
+      ]);
     },
     editTitle() {
-      const newTitle = document.getElementsByClassName("edit-todo-title")[0]
-        .value;
-      if (newTitle !== this.todo.title) {
-        this.$store.dispatch("editTodo", {
-          id: this.todo.id,
-          title: newTitle,
-        });
+      const todo_id = this.todo.id;
+      const todo_old_title = this.todo.title;
+      const todo_new_title = document.getElementsByClassName(
+        "edit-todo-title"
+      )[0].value;
+
+      if (todo_new_title !== todo_old_title) {
+        const editTitleTodoFunc = () => {
+          this.$store.dispatch("editTodo", {
+            id: todo_id,
+            title: todo_new_title,
+          });
+        };
+        editTitleTodoFunc();
+
+        this.$store.dispatch("addCommand", [
+          editTitleTodoFunc,
+          () => {
+            this.$store.dispatch("editTodo", {
+              id: todo_id,
+              title: todo_old_title,
+            });
+          },
+        ]);
       }
       this.$store.dispatch("stopEditMode");
     },

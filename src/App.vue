@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <GlobalEvents @keydown.ctrl.z="undoCommand" @keydown.ctrl.y="redoCommand"></GlobalEvents>
     <Header />
     <router-view />
     <Footer />
@@ -9,11 +10,13 @@
 <script>
 import Header from "./views/components/Layout/Header";
 import Footer from "./views/components/Layout/Footer";
+import GlobalEvents from "vue-global-events";
 export default {
   name: "App",
   components: {
     Header,
     Footer,
+    GlobalEvents,
   },
   created() {
     this.$store.dispatch("loadTodos");
@@ -44,6 +47,12 @@ export default {
       window.setTimeout(() => {
         element.classList.remove("transition");
       }, 300);
+    },
+    undoCommand() {
+      this.$store.dispatch("undoCommand");
+    },
+    redoCommand() {
+      this.$store.dispatch("redoCommand");
     },
   },
 };

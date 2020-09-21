@@ -15,7 +15,12 @@ export default {
   name: "Header",
   methods: {
     async toggleTheme() {
-      this.$store.dispatch("toggleColorTheme");
+      const changeThemeFunc = () => {
+        this.$store.dispatch("toggleColorTheme");
+      };
+      changeThemeFunc();
+
+      this.$store.dispatch("addCommand", [changeThemeFunc, changeThemeFunc]);
     },
   },
 };

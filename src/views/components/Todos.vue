@@ -38,8 +38,20 @@ export default {
   },
   methods: {
     handleDrogEnd(e) {
-      if (e.oldIndex !== e.newIndex) {
-        this.$store.dispatch("reorderTodos", [e.oldIndex, e.newIndex]);
+      const oldIndex = e.oldIndex;
+      const newIndex = e.newIndex;
+      if (oldIndex !== newIndex) {
+        const reorderTodosFunc = () => {
+          this.$store.dispatch("reorderTodos", [oldIndex, newIndex]);
+        };
+        reorderTodosFunc();
+
+        this.$store.dispatch("addCommand", [
+          reorderTodosFunc,
+          () => {
+            this.$store.dispatch("reorderTodos", [newIndex, oldIndex]);
+          },
+        ]);
       }
     },
   },

@@ -5,6 +5,7 @@ import { todos } from "./modules/todos";
 import { loading } from "./modules/loading";
 import { themes } from "./modules/themes";
 import { editmode } from "./modules/editmode";
+import { commands } from "./modules/commands";
 
 Vue.use(Vuex);
 
@@ -14,5 +15,6 @@ export default new Vuex.Store({
     loading,
     themes,
     editmode,
+    commands,
   },
 });
