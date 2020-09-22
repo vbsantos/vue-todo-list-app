@@ -26,7 +26,7 @@ export default {
     try {
       if (!storageAvailable("localStorage")) throw "Storage not available!";
       const theme = localStorage["color-theme"];
-      return theme;
+      return theme ? theme : "default";
     } catch (error) {
       console.error("ERROR:", error);
       return "default";
