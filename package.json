@@ -1,22 +1,19 @@
 {
-  "private": true,
   "name": "vue-todo-list",
-  "productName": "vue-todo-list",
-  "description": "My first Vue project",
+  "description": "Basic Vue Project",
+  "author": "Vinicius Bohrer <vbsanttos@gmail.com>",
+  "repository": "https://github.com/vbsantos/vue-todo-list.git",
   "version": "1.0.0",
   "license": "MIT",
+  "private": false,
+  "main": "index.js",
   "scripts": {
     "dev": "poi",
     "build": "poi build",
     "report": "poi build --bundle-report",
     "serve": "serve dist --single"
   },
-  "author": {
-    "name": "vbsantos",
-    "email": "vbsanttos@gmail.com"
-  },
   "dependencies": {
-    "@kevinfaguiar/vue-twemoji-picker": "^5.7.4",
     "normalize.css": "^7.0.0",
     "object-assign": "^4.1.1",
     "promise-polyfill": "^6.0.2",

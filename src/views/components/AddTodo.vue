@@ -10,20 +10,6 @@
       placeholder="Add Todo..."
       v-on:keydown.enter="addTodo"
     />
-    <twemoji-picker
-      :emojiData="emojiDataAll"
-      :emojiGroups="emojiGroups"
-      @emojiUnicodeAdded="emojiUnicodeAdded"
-      :searchEmojisFeat="true"
-      :pickerWidth="455"
-      :pickerHeight="180"
-    >
-      <template v-slot:twemoji-picker-button>
-        <button id="emoji-btn" class="neomorphic-btn">
-          <img draggable="false" class="icon" src="@/assets/emoji-icon.png" />
-        </button>
-      </template>
-    </twemoji-picker>
     <button
       id="submit-btn"
       @click="addTodo"
@@ -34,28 +20,12 @@
 </template>
 
 <script>
-import { TwemojiPicker } from "@kevinfaguiar/vue-twemoji-picker";
-import EmojiAllData from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-all-groups.json";
-import EmojiDataAnimalsNature from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-group-animals-nature.json";
-import EmojiDataFoodDrink from "@kevinfaguiar/vue-twemoji-picker/emoji-data/en/emoji-group-food-drink.json";
-import EmojiGroups from "@kevinfaguiar/vue-twemoji-picker/emoji-data/emoji-groups.json";
 export default {
   name: "AddTodo",
-  components: {
-    "twemoji-picker": TwemojiPicker,
-  },
   data: () => {
     return {
       title: "",
     };
-  },
-  computed: {
-    emojiDataAll() {
-      return EmojiAllData.filter((emoji) => emoji.group !== 2);
-    },
-    emojiGroups() {
-      return EmojiGroups.filter((emoji) => emoji.group !== 2);
-    },
   },
   methods: {
     addTodo(e) {
@@ -83,32 +53,6 @@ export default {
 
       this.title = "";
     },
-    emojiUnicodeAdded(e) {
-      const inputField = document.getElementById("text-input");
-      const caretPosition = inputField.selectionStart;
-      this.title =
-        this.title.slice(0, caretPosition) +
-        e +
-        this.title.slice(caretPosition, this.title.length);
-      inputField.click();
-      inputField.focus();
-    },
-    emojiContainerOpened(e) {
-      const emojiContainer = document.getElementById("popper-container");
-      if (
-        (emojiContainer.style.inset &&
-          emojiContainer.style.inset !== "auto auto 0px 0px") ||
-        (emojiContainer.style.top && emojiContainer.style.top !== "auto")
-      )
-        return;
-      const searchEmojiField = document.getElementById("search-header")
-        .childNodes[2];
-      searchEmojiField.focus();
-    },
-  },
-  mounted() {
-    const emojiButton = document.getElementById("popper-button");
-    emojiButton.onclick = this.emojiContainerOpened;
   },
 };
 </script>
@@ -129,7 +73,6 @@ export default {
   border: 0px;
   background-color: transparent;
   color: var(--color4);
-  margin-right: 20px;
 }
 #text-input:focus {
   outline: none;
@@ -161,18 +104,5 @@ export default {
 #text-input:-webkit-autofill {
   -webkit-text-fill-color: var(--color4);
   caret-color: white;
-}
-#emoji-btn .icon {
-  padding-top: 7px;
-  width: 25px;
-  height: 25px;
-  filter: var(--svg);
-  opacity: 0.65;
-}
-#emoji-btn {
-  height: 40px;
-  line-height: 40px;
-  width: 40px;
-  cursor: pointer;
 }
 </style>
