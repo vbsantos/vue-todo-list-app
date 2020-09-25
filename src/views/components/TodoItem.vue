@@ -19,18 +19,26 @@
       @dblclick="$store.dispatch('startEditMode', todo.id)"
       draggable="false"
       v-bind:class="{ selected: todo.completed }"
-    >{{ todo.title }}</p>
+    >
+      {{ todo.title }}
+    </p>
     <textarea
       @keydown.enter="editTitle"
       @keydown.esc="cancelEditTitle"
       @blur="cancelEditTitle"
+      @keyup="resizeInput"
+      @keypress="resizeInput"
       spellcheck="false"
       v-else
       class="edit-todo-title"
       :value="todo.title"
     />
 
-    <button draggable="false" class="delete-btn neomorphic-btn" @click="deleteTodo">
+    <button
+      draggable="false"
+      class="delete-btn neomorphic-btn"
+      @click="deleteTodo"
+    >
       <img draggable="false" class="icon" src="@/assets/trash-icon.png" />
     </button>
   </div>
@@ -51,17 +59,18 @@ export default {
     editMode() {
       if (this.editMode) {
         Vue.nextTick(() => {
-          const textarea = document.getElementsByClassName(
-            "edit-todo-title"
-          )[0];
-          textarea.style.height = "5px";
-          textarea.style.height = `${textarea.scrollHeight}px`;
-          textarea.focus();
+          this.resizeInput();
         });
       }
     },
   },
   methods: {
+    resizeInput() {
+      const field = document.getElementsByClassName("edit-todo-title")[0];
+      field.style.height = "40px";
+      field.style.height = `${field.scrollHeight}px`;
+      field.focus();
+    },
     toggleTodo() {
       const todo_id = this.todo.id;
       const todo_completed = this.todo.completed;
@@ -159,6 +168,7 @@ export default {
   word-wrap: break-word;
 }
 .edit-todo-title {
+  overflow: hidden;
   outline: none;
   background-color: var(--color6);
   border: none;

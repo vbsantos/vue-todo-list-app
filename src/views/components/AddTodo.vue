@@ -15,7 +15,9 @@
       @click="addTodo"
       v-bind:class="{ empty: title == '' }"
       class="neomorphic-btn"
-    >ADD</button>
+    >
+      ADD
+    </button>
   </div>
 </template>
 
@@ -94,15 +96,5 @@ export default {
   min-width: 100px;
   margin-left: 20px;
   cursor: pointer;
-}
-#text-input:-webkit-autofill,
-#text-input:-webkit-autofill:hover,
-#text-input:-webkit-autofill:focus,
-#text-input:-webkit-autofill:active {
-  -webkit-box-shadow: inset 0 0 0 30px var(--color1);
-}
-#text-input:-webkit-autofill {
-  -webkit-text-fill-color: var(--color4);
-  caret-color: white;
 }
 </style>
